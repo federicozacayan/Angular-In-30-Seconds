@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Angular-In-30-Seconds">
+  <title>Angular-In-30-Seconds</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://federicozacayan.github.io/tutorial/css/prism.css" rel="stylesheet">
+<style>textarea {
+  width: 100%;
+  margin: .5rem auto; }
+
+.buttons button {
+  cursor: pointer;
+  background-color: #00b7ff;
+  padding: .5rem;
+  margin: .5rem;
+  border-radius: 1rem;
+  color: white;
+  text-transform: capitalize;
+  display: inline-block;
+  width: auto; }
+
+button {
+  width: 50%; }
+
+.styler {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1rem; }
+  .styler .background {
+    position: fixed;
+    background-color: #000;
+    opacity: .5;
+    height: 200px;
+    top: 0;
+    margin-left: -1rem;
+    float: left;
+    width: 100%;
+    z-index: -1;
+    height: 100vh; }
+</style></head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"><div class="container"><div><div><h1>Angular 101</h1><p>NOTE: This is a review of ANGULAR, we do not care about DESIGN.</p><h2>How to start a project?</h2><pre class="  language-css"><code class="  language-css">npm install -g @angular/cli
+</code></pre><p>In my case, /usr/bin/ng file already exists in my system for some reason. I just made a back up of that and deleted it.</p><pre class="  language-html"><code class="  language-html">sudo cp /usr/bin/ng /usr/bin/ng.bk
+sudo rm /usr/bin/ng
+npm install -g @angular/cli</code></pre><p>Create a project</p><pre class="  language-html"><code class="  language-html">ng new angular-tutorial</code></pre><p>Say "no routing"</p><pre class="  language-html"><code class="  language-html">Would you like to add Angular routing? (y/N)</code></pre><p>Choose "CSS"</p><pre class="  language-css"><code class="  language-css">  CSS
+❯ SCSS   [ <span class="token property">https</span><span class="token punctuation">:</span>//sass-lang.com/documentation/syntax#scss                ]
+  Sass   [ <span class="token property">https</span><span class="token punctuation">:</span>//sass-lang.com/documentation/syntax#the-indented-syntax ]
+  Less   [ <span class="token property">http</span><span class="token punctuation">:</span>//lesscss.org                                             ]
+  Stylus [ <span class="token property">http</span><span class="token punctuation">:</span>//stylus-lang.com                                         ] </code></pre><p>cd angular-tutorial</p><pre class="  language-javascript"><code class="  language-javascript">ng serve <span class="token operator">--</span>open <span class="token comment">//  ng serve -o</span></code></pre><h2>Delete extra files</h2><p>Delete everything except the following files:</p><pre class="  language-css"><code class="  language-css">node_modules/
+src/app/app.component.html
+src/app/app.component.scss
+src/app/app.component.ts
+src/app/app.module.ts
+
+src/index.html
+src/main.ts
+src/polyfills.ts
+src/styles.scss
+
+.gitignore
+angular.json
+package-lock.json
+package.json
+tsconfig.app.json
+tsconfig.json</code></pre><h2>Simplify some files</h2><pre class="  language-css"><code class="  language-css"><span class="token comment">/* src/main.ts */</span>
+<span class="token selector">import</span> <span class="token punctuation">{</span> platformBrowserDynamic <span class="token punctuation">}</span> from <span class="token string">'@angular/platform-browser-dynamic'</span><span class="token punctuation">;</span>
+<span class="token selector">import</span> <span class="token punctuation">{</span> AppModule <span class="token punctuation">}</span> from <span class="token string">'./app/app.module'</span><span class="token punctuation">;</span> 
+<span class="token function">platformBrowserDynamic</span><span class="token punctuation">(</span><span class="token punctuation">)</span>.<span class="token function">bootstrapModule</span><span class="token punctuation">(</span>AppModule<span class="token punctuation">)</span>
+  .<span class="token function">catch</span><span class="token punctuation">(</span>err =&gt; console.<span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- /* src/index.html */ --&gt;</span>
+<span class="token doctype">&lt;!doctype html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>App1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-root</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-root</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre><pre class="  language-css"><code class="  language-css"><span class="token comment">/* src/app/app.component.scss */</span>
+<span class="token selector">div</span><span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span>red
+<span class="token punctuation">}</span></code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- /* src/app/app.component.scss */ --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello world!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre><h1>Export to run into file system</h1><p>Build the project</p><pre class="  language-html"><code class="  language-html">ng build</code></pre><p>Then delete &lt;base href="/" /&gt;  and  type="module" into a /dist/&lt;project-name&gt;/index.html</p><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- /dist/&lt;project-name&gt;/index.html --&gt;</span>
+<span class="token doctype">&lt;!doctype html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;base href="/" /&gt; --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>App1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>styles.09e2c710755c8867a460.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-root</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-root</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;script src="runtime-es2015.c5fa8325f89fc516600b.js" type="module"&gt;&lt;/script&gt; --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>runtime-es2015.c5fa8325f89fc516600b.js<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>runtime-es5.c5fa8325f89fc516600b.js<span class="token punctuation">"</span></span> <span class="token attr-name">nomodule</span> <span class="token attr-name">defer</span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>polyfills-es5.3e8196928d184a6e5319.js<span class="token punctuation">"</span></span> <span class="token attr-name">nomodule</span> <span class="token attr-name">defer</span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;script src="polyfills-es2015.5b10b8fd823b6392f1fd.js" type="module"&gt;&lt;/script&gt; --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>polyfills-es2015.5b10b8fd823b6392f1fd.js<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- &lt;script src="main-es2015.4da534115f93156db830.js" type="module"&gt;&lt;/script&gt; --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-es2015.4da534115f93156db830.js<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main-es5.4da534115f93156db830.js<span class="token punctuation">"</span></span> <span class="token attr-name">nomodule</span> <span class="token attr-name">defer</span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre><h2>Components</h2><p>A easy way to create a component is using the console</p><pre class="  language-html"><code class="  language-html">ng generate component header
+ng g c footer
+ng g c login
+ng g c home</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- app.component.scss --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-header</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-header</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-home</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-home</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-footer</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-footer</span><span class="token punctuation">&gt;</span></span></code></pre><h2>Form and Login</h2><p>We can place the login component into a header</p><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- header.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>header works!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-login</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-login</span><span class="token punctuation">&gt;</span></span></code></pre><p>To refer a form a its elements</p><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- login.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">#loginForm123</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ngForm<span class="token punctuation">"</span></span> <span class="token attr-name">(submit)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginFunction(loginForm123)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">ngModel</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">ngModel</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Login<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* login.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NgForm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/forms'</span><span class="token punctuation">;</span><span class="token comment">//check it out</span>
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'app-login'</span><span class="token punctuation">,</span>
+  templateUrl<span class="token punctuation">:</span> <span class="token string">'./login.component.html'</span><span class="token punctuation">,</span>
+  styleUrls<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'./login.component.scss'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LoginComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">loginFunction</span><span class="token punctuation">(</span><span class="token parameter">form<span class="token punctuation">:</span> NgForm</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//check it out</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">check</span><span class="token punctuation">(</span>form<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment">//@todo create session</span>
+      <span class="token comment">//@todo redirect</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//@todo show errors</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token comment">//check it out</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">check</span><span class="token punctuation">(</span><span class="token parameter">form<span class="token punctuation">:</span> NgForm</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//@todo validation</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>form<span class="token punctuation">.</span>value<span class="token punctuation">.</span>mail <span class="token operator">===</span> <span class="token string">'a@a.com'</span> <span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//check it out</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* app.module.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> BrowserModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/platform-browser'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NgModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HeaderComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./header/header.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> FooterComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./footer/footer.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> LoginComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./login/login.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HomeComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./home/home.component'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> FormsModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/forms'</span><span class="token comment">//check it out</span>
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  declarations<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    AppComponent<span class="token punctuation">,</span>
+    HeaderComponent<span class="token punctuation">,</span>
+    FooterComponent<span class="token punctuation">,</span>
+    LoginComponent<span class="token punctuation">,</span>
+    HomeComponent
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  imports<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    BrowserModule<span class="token punctuation">,</span>
+    FormsModule<span class="token comment">//check it out</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  bootstrap<span class="token punctuation">:</span> <span class="token punctuation">[</span>AppComponent<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span></code></pre><h2>Send data to Sub-Component</h2><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* header.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'app-header'</span><span class="token punctuation">,</span>
+  templateUrl<span class="token punctuation">:</span> <span class="token string">'./header.component.html'</span><span class="token punctuation">,</span>
+  styleUrls<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'./header.component.scss'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HeaderComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  parentVar<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">"parent value"</span><span class="token punctuation">;</span> <span class="token comment">//check it out</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- header.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>header works! - {{parentVar}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-login</span> <span class="token attr-name">[p123]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parentVar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-login</span><span class="token punctuation">&gt;</span></span></code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* login.component.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LoginComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> p123<span class="token punctuation">:</span>string <span class="token comment">//check it out</span>
+<span class="token operator">...</span></code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- login.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">&gt;</span></span>{{p123}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span> <span class="token punctuation">&gt;</span></span><span class="token comment">&lt;!-- check it out --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">#loginForm123</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ngForm<span class="token punctuation">"</span></span> <span class="token attr-name">(submit)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loginFunction(loginForm123)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mail<span class="token punctuation">"</span></span> <span class="token attr-name">ngModel</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">ngModel</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Login<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre><h2>Array to Sub-Component</h2><p>Following the previous example</p><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* header.component.ts */</span>
+  parentVarList<span class="token punctuation">:</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">"parent value1"</span><span class="token punctuation">,</span>
+    <span class="token string">"parent value2"</span><span class="token punctuation">,</span>
+    <span class="token string">"parent value3"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre><p>Generate link component</p><pre class="  language-html"><code class="  language-html">ng g c link</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- header.component.html --&gt;</span>
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-link</span> 
+    <span class="token attr-name">*ngFor</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>let element of parentVarList<span class="token punctuation">"</span></span>
+    <span class="token attr-name">[linkText]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>element<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-link</span><span class="token punctuation">&gt;</span></span> 
+...</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* link.component.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LinkComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  @<span class="token function">Input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">public</span> linkText<span class="token punctuation">:</span>string <span class="token comment">//check it out</span>
+<span class="token operator">...</span>
+  </code></pre><h2>Receive data from Child</h2><p>The child</p><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* link.component.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>Output <span class="token punctuation">,</span> EventEmitter<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">LinkComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  @<span class="token function">Output</span><span class="token punctuation">(</span><span class="token punctuation">)</span> emiter123<span class="token punctuation">:</span>EventEmitter<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventEmitter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//check it out</span>
+  <span class="token operator">...</span>
+  <span class="token function">sendData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>boolean<span class="token punctuation">{</span><span class="token comment">//check it out</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>emiter123<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'Some text from child'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- link.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">(click)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sendData()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Click me<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span></code></pre><p>The parent</p><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- header.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-link</span> 
+    <span class="token attr-name">*ngFor</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>let element of parentVarList<span class="token punctuation">"</span></span>
+    <span class="token attr-name">[linkText]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>element<span class="token punctuation">"</span></span>
+    <span class="token attr-name">(emiter123)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataFromChild($event)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-link</span><span class="token punctuation">&gt;</span></span></code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* header.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HeaderComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'...'</span><span class="token punctuation">;</span>
+  <span class="token operator">...</span>
+  <span class="token function">dataFromChild</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">=</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- header.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>{{title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>app-link</span> 
+    <span class="token attr-name">*ngFor</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>let element of parentVarList<span class="token punctuation">"</span></span>
+    <span class="token attr-name">[linkText]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>element<span class="token punctuation">"</span></span>
+    <span class="token attr-name">(emiter123)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataFromChild($event)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>app-link</span><span class="token punctuation">&gt;</span></span></code></pre><h1>Distribute States and Behaviour</h1><p>We need to create a service</p><pre class="  language-html"><code class="  language-html">ng generate service timer</code></pre><p>We have to register it</p><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* app.module.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TimerService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./timer.service'</span>
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  providers<span class="token punctuation">:</span> <span class="token punctuation">[</span>TimerService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* timer.service.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  providedIn<span class="token punctuation">:</span> <span class="token string">'root'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">TimerService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+  <span class="token function">getCurrentDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>string<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chek it out</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* footer.component.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TimerService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./../timer.service'</span><span class="token punctuation">;</span><span class="token comment">//chek it out</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">FooterComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  date<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'...'</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> timerService<span class="token punctuation">:</span>TimerService</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token comment">//chek it out</span>
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>date <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>timerService<span class="token punctuation">.</span><span class="token function">getCurrentDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//chek it out</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- footer.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>footer works!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span><span class="token punctuation">&gt;</span></span>{{date}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+</code></pre><h2>Ajax in Angular</h2><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* app.module.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HttpClientModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/common/http'</span><span class="token punctuation">;</span> 
+@<span class="token function">NgModule</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  imports<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    HttpClientModule
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* timer.service.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HttpClient <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/common/http'</span><span class="token punctuation">;</span> <span class="token comment">//check it out</span>
+@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  providedIn<span class="token punctuation">:</span> <span class="token string">'root'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">TimerService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> http<span class="token punctuation">:</span> HttpClient</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token comment">//check it out</span>
+  <span class="token function">getCurrentDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//check it out</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>http<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'https://jsonplaceholder.typicode.com/todos/1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* footer.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TimerService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./../timer.service'</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">FooterComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  date<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'...'</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> timerService<span class="token punctuation">:</span> TimerService</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+  <span class="token function">ngOnInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>timerService<span class="token punctuation">.</span><span class="token function">getCurrentDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>date <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- footer.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>footer works!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span><span class="token punctuation">&gt;</span></span>{{date}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span></code></pre><h2>Style elements</h2><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- home.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ text | lowercase }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>   
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ text | uppercase }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>   
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ text | titlecase }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>   
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">[style.color]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bool ? 'red' : 'blue'<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>home works!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">[ngStyle]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>customStyle<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* home.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HomeComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  bool<span class="token punctuation">:</span>boolean <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  customStyle<span class="token punctuation">:</span>any <span class="token operator">=</span> <span class="token punctuation">{</span>
+    color<span class="token punctuation">:</span> <span class="token string">"green"</span>
+  <span class="token punctuation">}</span>
+  text<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'awesome text'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre><h2>Control structures in templates</h2><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- home.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">*ngIf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bool<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Content to render when condition is true.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">*ngIf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bool; else elseBlock<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Content to render when condition is true.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ng-template</span> <span class="token attr-name">#elseBlock</span><span class="token punctuation">&gt;</span></span>Content to render when condition is false.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ng-template</span><span class="token punctuation">&gt;</span></span></code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* home.component.ts */</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> OnInit <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@angular/core'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HomeComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  bool<span class="token punctuation">:</span>boolean <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  customStyle<span class="token punctuation">:</span>any <span class="token operator">=</span> <span class="token punctuation">{</span>
+    color<span class="token punctuation">:</span> <span class="token string">"green"</span>
+  <span class="token punctuation">}</span>
+  text<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'awesome text'</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre><h2>Two way binding</h2><p>We can send prop from the component to the view, but to send data fron the view to the component we can use [(ngModel)].</p><pre class="  language-html"><code class="  language-html"><span class="token comment">&lt;!-- home.component.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">[value]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">(keyup.enter)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name = $event.target.value; onkeyUp()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">[(ngModel)]</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span> <span class="token attr-name">(keyup.enter)</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>onkeyUp()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre><pre class="  language-javascript"><code class="  language-javascript"><span class="token comment">/* home.component.ts */</span>
+<span class="token operator">...</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">HomeComponent</span> <span class="token keyword">implements</span> <span class="token class-name">OnInit</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  name<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'Jhon'</span><span class="token punctuation">;</span>
+  lastName<span class="token punctuation">:</span>string <span class="token operator">=</span> <span class="token string">'Doe'</span><span class="token punctuation">;</span>
+  <span class="token function">onkeyUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lastName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="styler" style="display: none;"><div class="background"></div><textarea>Title</textarea><br><button>Duplicate</button><button>Delete</button><br><div class="buttons"><button>h1 </button><button>h2 </button><button>p </button><button>html </button><button>css </button><button>javascript </button></div><label for="up" class="btn btn-primary btn-block btn-outlined">Upload Json</label><input id="up" type="file" accept="text/plain" style="display: none;"><label for="down" class="btn btn-primary btn-block btn-outlined">Download Json</label><button id="down" style="display: none;">Export</button><label for="html" class="btn btn-primary btn-block btn-outlined">Download HTML</label><button id="html" style="display: none;">Export</button></div></div></div></div>
+<script src="/static/js/bundle.js"></script><script src="/static/js/0.chunk.js"></script><script src="/static/js/main.chunk.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script src="https://federicozacayan.github.io/tutorial/js/prism.js"></script>
+
+
+</body></html>
